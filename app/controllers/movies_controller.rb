@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
     session[:sort] = 'id' if !session[:sort]
     
     session[:ratings] = params[:ratings] if params[:ratings]
-    session[:ratings] = nil if !session[:ratings]
+    session[:ratings] = Hash[@all_ratings.map {|rating| [rating, rating]}] if !session[:ratings]
     
     if (!params[:sort] || !params[:ratings])
      flash.keep
